@@ -1,24 +1,4 @@
-/* ==================== CSS STYLESHEET ====================
-   QuickDeliver - Online Ordering System
-   
-   This file contains all styles organized into sections:
-   1. CSS Variables (Colors, Fonts, Spacing)
-   2. Reset & Base Styles
-   3. Login/Signup Page Styles
-   4. Header Styles
-   5. Main Content & Products
-   6. Cart & Orders
-   7. Admin Panel & Forms
-   8. User Accounts Table
-   9. Modals
-   10. Footer & Toast
-   11. Responsive Design
-   ========================================================= */
 
-/* ==================== SECTION 1: CSS VARIABLES ====================
-   All colors, fonts, and spacing defined in one place.
-   Easy to change the theme by modifying these values.
-   ================================================================= */
 :root {
     /* Main Color Palette - Warm Egyptian-inspired colors */
     --color-primary: #C45C26;        /* Terracotta orange */
@@ -1391,3 +1371,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-primary-dark);
 }
+
