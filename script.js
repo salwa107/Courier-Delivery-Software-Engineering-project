@@ -1,28 +1,4 @@
-/* ==================== SCRIPT.JS ====================
-   QuickDeliver - Online Ordering System (Egypt)
-   
-   This file contains all JavaScript logic.
-   
-   KEY RULES:
-   1. Signup creates CUSTOMER accounts only (no role selection)
-   2. Admin is the ONLY one who can create Admin/Courier/Service Offeror accounts
-   3. Admin can EDIT all user accounts
-   4. Service Offeror products start as PENDING until Admin approves
-   5. Prices are in EGP (Egyptian Pounds)
-   6. All demo users have Egyptian names
-   
-   SECTIONS:
-   1. Data Models & Sample Data
-   2. Authentication (Login/Signup)
-   3. Admin Functions (Create/Edit Users, Manage Products)
-   4. Customer Functions (Cart, Checkout, Payment)
-   5. Service Offeror Functions
-   6. Courier Functions
-   7. Display Functions
-   8. Utility Functions
-   ================================================== */
 
-/* ==================== SECTION 1: DATA MODELS & SAMPLE DATA ====================
    
    USER OBJECT STRUCTURE:
    {
@@ -1822,4 +1798,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
    
+
 
