@@ -1,64 +1,60 @@
 /* ==================== CSS STYLESHEET ====================
-   This file contains all the styles for the QuickDeliver app.
-   Organized into sections for easy reading and maintenance.
+   QuickDeliver - Online Ordering System
    
-   SECTIONS:
+   This file contains all styles organized into sections:
    1. CSS Variables (Colors, Fonts, Spacing)
    2. Reset & Base Styles
    3. Login/Signup Page Styles
    4. Header Styles
-   5. Main Content Styles
-   6. Products Grid Styles
-   7. Cart Styles
-   8. Orders Styles
-   9. Admin Panel Styles
-   10. Courier Panel Styles
-   11. Modal Styles
-   12. Toast Notification Styles
-   13. Footer Styles
-   14. Responsive Design
+   5. Main Content & Products
+   6. Cart & Orders
+   7. Admin Panel & Forms
+   8. User Accounts Table
+   9. Modals
+   10. Footer & Toast
+   11. Responsive Design
    ========================================================= */
 
 /* ==================== SECTION 1: CSS VARIABLES ====================
-   Define colors, fonts, and spacing in one place.
-   This makes it easy to change the theme later.
+   All colors, fonts, and spacing defined in one place.
+   Easy to change the theme by modifying these values.
    ================================================================= */
 :root {
-    /* Main Color Palette - Egyptian-inspired warm colors */
-    --color-primary: #C45C26;        /* Terracotta orange - main action color */
-    --color-primary-dark: #A04B1E;   /* Darker orange for hover states */
-    --color-secondary: #1E5F74;      /* Deep teal - secondary actions */
-    --color-secondary-dark: #174A5C; /* Darker teal for hover */
+    /* Main Color Palette - Warm Egyptian-inspired colors */
+    --color-primary: #C45C26;        /* Terracotta orange */
+    --color-primary-dark: #A04B1E;   /* Darker orange for hover */
+    --color-secondary: #1E5F74;      /* Deep teal */
+    --color-secondary-dark: #174A5C; /* Darker teal */
     
-    /* Gold accent for Egyptian theme */
-    --color-gold: #D4A853;           /* Egyptian gold */
-    --color-gold-dark: #B8923E;      /* Darker gold */
+    /* Gold accent */
+    --color-gold: #D4A853;
+    --color-gold-dark: #B8923E;
     
     /* Background Colors */
-    --bg-main: #FAF6F1;              /* Warm cream background */
-    --bg-card: #FFFFFF;              /* White for cards */
+    --bg-main: #FAF6F1;              /* Warm cream */
+    --bg-card: #FFFFFF;              /* White cards */
     --bg-header: #1E3A5F;            /* Deep blue header */
-    --bg-accent: #FFF8F0;            /* Light peachy accent */
+    --bg-accent: #FFF8F0;            /* Light peachy */
     --bg-login: linear-gradient(135deg, #1E3A5F 0%, #2C5F7C 50%, #1E5F74 100%);
     
     /* Text Colors */
-    --text-primary: #2C1810;         /* Dark brown - main text */
-    --text-secondary: #6B5B4F;       /* Medium brown - secondary text */
-    --text-light: #FAF6F1;           /* Light text on dark backgrounds */
-    --text-muted: #9B8B7F;           /* Muted text for hints */
+    --text-primary: #2C1810;         /* Dark brown */
+    --text-secondary: #6B5B4F;       /* Medium brown */
+    --text-light: #FAF6F1;           /* Light text */
+    --text-muted: #9B8B7F;           /* Muted text */
     
     /* Status Colors */
-    --color-success: #4A7C4E;        /* Green for success */
-    --color-warning: #D4A853;        /* Gold for warnings/pending */
-    --color-danger: #C44536;         /* Red for errors/delete */
-    --color-info: #5B8BA0;           /* Blue for info */
+    --color-success: #4A7C4E;        /* Green */
+    --color-warning: #D4A853;        /* Gold/warning */
+    --color-danger: #C44536;         /* Red */
+    --color-info: #5B8BA0;           /* Blue */
     
     /* Spacing */
-    --spacing-xs: 0.25rem;           /* 4px */
-    --spacing-sm: 0.5rem;            /* 8px */
-    --spacing-md: 1rem;              /* 16px */
-    --spacing-lg: 1.5rem;            /* 24px */
-    --spacing-xl: 2rem;              /* 32px */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
     
     /* Border Radius */
     --radius-sm: 4px;
@@ -78,18 +74,14 @@
     --font-body: 'DM Sans', -apple-system, sans-serif;
 }
 
-/* ==================== SECTION 2: RESET & BASE STYLES ====================
-   Reset default browser styles for consistency.
-   ======================================================================= */
+/* ==================== SECTION 2: RESET & BASE STYLES ==================== */
 
-/* Remove default margins and set box-sizing */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base body styles */
 body {
     font-family: var(--font-body);
     background-color: var(--bg-main);
@@ -98,16 +90,12 @@ body {
     min-height: 100vh;
 }
 
-/* Hidden class to hide elements */
 .hidden {
     display: none !important;
 }
 
-/* ==================== SECTION 3: LOGIN/SIGNUP PAGE STYLES ====================
-   Styles for the first page - Login and Signup forms.
-   ============================================================================ */
+/* ==================== SECTION 3: LOGIN/SIGNUP PAGE STYLES ==================== */
 
-/* Full-page login container */
 .login-page {
     min-height: 100vh;
     display: flex;
@@ -115,14 +103,12 @@ body {
     align-items: center;
     background: var(--bg-login);
     padding: var(--spacing-lg);
-    /* Decorative pattern */
     background-image: 
         var(--bg-login),
         radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(196, 92, 38, 0.1) 0%, transparent 50%);
 }
 
-/* Login form container */
 .login-container {
     background: var(--bg-card);
     border-radius: var(--radius-xl);
@@ -133,7 +119,6 @@ body {
     animation: slideUp 0.5s ease;
 }
 
-/* Slide up animation for login box */
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -145,7 +130,6 @@ body {
     }
 }
 
-/* Login header with logo */
 .login-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
@@ -158,7 +142,6 @@ body {
     animation: float 3s ease-in-out infinite;
 }
 
-/* Floating animation for logo */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -176,7 +159,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Auth tabs (Login/Signup toggle) */
+/* Auth tabs */
 .auth-tabs {
     display: flex;
     gap: var(--spacing-sm);
@@ -210,7 +193,7 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* Auth forms styling */
+/* Auth forms */
 .auth-form {
     animation: fadeIn 0.3s ease;
 }
@@ -226,6 +209,18 @@ body {
     color: var(--text-primary);
     margin-bottom: var(--spacing-lg);
     text-align: center;
+}
+
+/* Signup note - tells user they will be customer */
+.signup-note {
+    text-align: center;
+    background: var(--bg-accent);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-lg);
+    border-left: 3px solid var(--color-gold);
 }
 
 .auth-hint {
@@ -245,9 +240,7 @@ body {
     text-decoration: underline;
 }
 
-/* ==================== SECTION 4: HEADER STYLES ====================
-   The top navigation bar with logo and user info.
-   ================================================================= */
+/* ==================== SECTION 4: HEADER STYLES ==================== */
 
 .header {
     background: var(--bg-header);
@@ -258,7 +251,6 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-/* Header content container - flexbox for layout */
 .header-content {
     max-width: 1400px;
     margin: 0 auto;
@@ -269,7 +261,6 @@ body {
     gap: var(--spacing-md);
 }
 
-/* Logo styling */
 .logo {
     display: flex;
     align-items: center;
@@ -286,10 +277,8 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-light);
-    letter-spacing: -0.5px;
 }
 
-/* User info section */
 .user-info {
     display: flex;
     align-items: center;
@@ -311,22 +300,18 @@ body {
     text-transform: uppercase;
 }
 
-/* ==================== SECTION 5: MAIN CONTENT STYLES ====================
-   Container for all the role-specific sections.
-   ======================================================================= */
+/* ==================== SECTION 5: MAIN CONTENT & PRODUCTS ==================== */
 
 .main-content {
     max-width: 1400px;
     margin: 0 auto;
     padding: var(--spacing-xl);
     min-height: calc(100vh - 200px);
-    /* Subtle geometric pattern background */
     background-image: 
         radial-gradient(circle at 20% 80%, rgba(196, 92, 38, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, rgba(30, 95, 116, 0.03) 0%, transparent 50%);
 }
 
-/* Section title styling */
 .section-title {
     font-family: var(--font-heading);
     font-size: 2rem;
@@ -338,15 +323,11 @@ body {
     display: inline-block;
 }
 
-/* Role sections animation */
 .role-section {
     animation: fadeIn 0.4s ease;
 }
 
-/* ==================== SECTION 6: PRODUCTS GRID STYLES ====================
-   Grid layout for displaying products.
-   ======================================================================== */
-
+/* Products container */
 .products-container {
     margin-bottom: var(--spacing-xl);
 }
@@ -381,24 +362,20 @@ body {
     transition: all 0.2s ease;
 }
 
-.category-btn:hover {
-    background: var(--color-secondary);
-    color: var(--text-light);
-}
-
+.category-btn:hover,
 .category-btn.active {
     background: var(--color-secondary);
     color: var(--text-light);
 }
 
-/* CSS Grid for responsive product layout */
+/* Products grid */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: var(--spacing-lg);
 }
 
-/* Individual product card */
+/* Product card */
 .product-card {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
@@ -410,7 +387,6 @@ body {
     overflow: hidden;
 }
 
-/* Decorative element on cards */
 .product-card::before {
     content: '';
     position: absolute;
@@ -427,7 +403,6 @@ body {
     border-color: var(--color-primary);
 }
 
-/* Product emoji/icon display */
 .product-icon {
     font-size: 3rem;
     margin-bottom: var(--spacing-sm);
@@ -449,7 +424,6 @@ body {
     margin-bottom: var(--spacing-xs);
 }
 
-/* Service offeror name on product */
 .product-seller {
     font-size: 0.8rem;
     color: var(--color-secondary);
@@ -484,14 +458,7 @@ body {
     color: var(--color-warning);
 }
 
-.product-status.unavailable {
-    background: rgba(196, 69, 54, 0.1);
-    color: var(--color-danger);
-}
-
-/* ==================== SECTION 7: BUTTON STYLES ====================
-   Reusable button components.
-   ================================================================= */
+/* ==================== BUTTON STYLES ==================== */
 
 .btn {
     padding: var(--spacing-sm) var(--spacing-md);
@@ -508,7 +475,6 @@ body {
     gap: var(--spacing-xs);
 }
 
-/* Primary button - main action color */
 .btn-primary {
     background: var(--color-primary);
     color: var(--text-light);
@@ -520,7 +486,6 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* Secondary button - subtle action */
 .btn-secondary {
     background: var(--color-secondary);
     color: var(--text-light);
@@ -531,7 +496,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Success button - for approve actions */
 .btn-success {
     background: var(--color-success);
     color: var(--text-light);
@@ -542,7 +506,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Danger button - for delete actions */
 .btn-danger {
     background: var(--color-danger);
     color: var(--text-light);
@@ -553,20 +516,26 @@ body {
     transform: translateY(-2px);
 }
 
-/* Small button variant */
+.btn-warning {
+    background: var(--color-warning);
+    color: var(--text-primary);
+}
+
+.btn-warning:hover {
+    background: var(--color-gold-dark);
+    transform: translateY(-2px);
+}
+
 .btn-sm {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: 0.75rem;
 }
 
-/* Full width button */
 .btn-block {
     width: 100%;
 }
 
-/* ==================== SECTION 8: CART STYLES ====================
-   Shopping cart container and items.
-   ================================================================ */
+/* ==================== SECTION 6: CART & ORDERS ==================== */
 
 .cart-container {
     background: var(--bg-card);
@@ -582,7 +551,6 @@ body {
     margin-bottom: var(--spacing-md);
 }
 
-/* Individual cart item */
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -612,7 +580,6 @@ body {
     font-weight: 500;
 }
 
-/* Empty cart message */
 .empty-cart,
 .no-orders {
     text-align: center;
@@ -621,7 +588,6 @@ body {
     font-style: italic;
 }
 
-/* Cart footer with total and checkout */
 .cart-footer {
     display: flex;
     justify-content: space-between;
@@ -640,10 +606,7 @@ body {
     margin-left: var(--spacing-sm);
 }
 
-/* ==================== SECTION 9: ORDERS STYLES ====================
-   Order list and individual order cards.
-   ================================================================= */
-
+/* Orders */
 .orders-container {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
@@ -657,7 +620,6 @@ body {
     gap: var(--spacing-md);
 }
 
-/* Individual order card */
 .order-card {
     background: var(--bg-accent);
     border-radius: var(--radius-md);
@@ -694,7 +656,6 @@ body {
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
 }
 
 .order-status.pending {
@@ -722,10 +683,6 @@ body {
     color: var(--color-danger);
 }
 
-.order-items {
-    margin-bottom: var(--spacing-md);
-}
-
 .order-items ul {
     list-style: none;
     padding-left: var(--spacing-md);
@@ -748,6 +705,7 @@ body {
     font-weight: 700;
     font-size: 1.125rem;
     color: var(--text-primary);
+    margin-top: var(--spacing-sm);
 }
 
 .order-payment {
@@ -764,9 +722,7 @@ body {
     align-items: center;
 }
 
-/* ==================== SECTION 10: ADMIN PANEL STYLES ====================
-   Admin-specific components and layouts.
-   ======================================================================= */
+/* ==================== SECTION 7: ADMIN PANEL & FORMS ==================== */
 
 .admin-panel,
 .service-panel,
@@ -775,7 +731,6 @@ body {
     gap: var(--spacing-xl);
 }
 
-/* Form container styling */
 .form-container {
     background: var(--bg-card);
     border-radius: var(--radius-lg);
@@ -792,7 +747,6 @@ body {
     border-bottom: 2px solid var(--bg-main);
 }
 
-/* Form note for service offerors */
 .form-note {
     margin-top: var(--spacing-md);
     padding: var(--spacing-sm) var(--spacing-md);
@@ -800,9 +754,9 @@ body {
     border-radius: var(--radius-sm);
     color: var(--color-warning);
     font-size: 0.875rem;
+    border-left: 3px solid var(--color-gold);
 }
 
-/* Form group styling */
 .form-group {
     margin-bottom: var(--spacing-md);
 }
@@ -815,7 +769,6 @@ body {
     font-size: 0.875rem;
 }
 
-/* Input and select styling */
 .form-group input,
 .form-group select {
     width: 100%;
@@ -840,7 +793,6 @@ body {
     color: var(--text-muted);
 }
 
-/* Form row for side-by-side inputs */
 .form-row {
     display: flex;
     gap: var(--spacing-md);
@@ -872,7 +824,7 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-/* Admin product list */
+/* Admin lists */
 .admin-products,
 .service-products,
 .users-list-container {
@@ -899,7 +851,6 @@ body {
     overflow-y: auto;
 }
 
-/* Admin list item */
 .admin-item {
     display: flex;
     justify-content: space-between;
@@ -948,59 +899,77 @@ body {
     flex-wrap: wrap;
 }
 
-/* Users list styling */
-.users-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-md);
+/* ==================== SECTION 8: USER ACCOUNTS TABLE ==================== */
+
+.users-table {
+    overflow-x: auto;
 }
 
-.user-card {
-    background: var(--bg-accent);
-    border-radius: var(--radius-md);
+.users-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--spacing-md);
+}
+
+.users-table th,
+.users-table td {
     padding: var(--spacing-md);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid #E5DDD5;
 }
 
-.user-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-full);
-    background: var(--color-primary);
-    color: var(--text-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 1.25rem;
+.users-table th {
+    background: var(--bg-accent);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.user-info {
-    flex: 1;
+.users-table tr:hover {
+    background: var(--bg-accent);
 }
 
-.user-name {
+.users-table td {
+    color: var(--text-secondary);
+}
+
+.users-table .user-name {
     font-weight: 600;
     color: var(--text-primary);
 }
 
-.user-email {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-}
-
-.user-role {
+.users-table .user-role {
+    display: inline-block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
     font-size: 0.75rem;
-    color: var(--color-primary);
-    text-transform: uppercase;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
-/* ==================== SECTION 11: COURIER PANEL STYLES ====================
-   Courier-specific components.
-   ========================================================================= */
+.users-table .user-role.admin {
+    background: rgba(196, 92, 38, 0.1);
+    color: var(--color-primary);
+}
+
+.users-table .user-role.customer {
+    background: rgba(74, 124, 78, 0.1);
+    color: var(--color-success);
+}
+
+.users-table .user-role.courier {
+    background: rgba(91, 139, 160, 0.1);
+    color: var(--color-info);
+}
+
+.users-table .user-role.serviceOfferor {
+    background: rgba(212, 168, 83, 0.2);
+    color: var(--color-gold-dark);
+}
+
+/* ==================== COURIER PANEL ==================== */
 
 .courier-settings {
     background: var(--bg-card);
@@ -1055,7 +1024,6 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-/* Status select dropdown for courier */
 .status-select {
     padding: var(--spacing-xs) var(--spacing-sm);
     border: 2px solid #E5DDD5;
@@ -1066,9 +1034,7 @@ body {
     cursor: pointer;
 }
 
-/* ==================== SECTION 12: MODAL STYLES ====================
-   Popup modals for checkout and payment.
-   ================================================================= */
+/* ==================== SECTION 9: MODALS ==================== */
 
 .modal {
     position: fixed;
@@ -1119,7 +1085,7 @@ body {
     text-align: center;
 }
 
-/* Checkout summary */
+/* Checkout */
 .checkout-summary {
     background: var(--bg-accent);
     border-radius: var(--radius-md);
@@ -1237,9 +1203,7 @@ body {
     margin-bottom: var(--spacing-lg);
 }
 
-/* ==================== SECTION 13: TOAST NOTIFICATION STYLES ====================
-   Popup message for user feedback.
-   ============================================================================= */
+/* ==================== SECTION 10: TOAST & FOOTER ==================== */
 
 .toast {
     position: fixed;
@@ -1273,10 +1237,6 @@ body {
         opacity: 1;
     }
 }
-
-/* ==================== SECTION 14: FOOTER STYLES ====================
-   Page footer styling.
-   ================================================================== */
 
 .footer {
     background: var(--bg-header);
@@ -1312,11 +1272,8 @@ body {
     text-decoration: underline;
 }
 
-/* ==================== SECTION 15: RESPONSIVE DESIGN ====================
-   Media queries for different screen sizes.
-   ====================================================================== */
+/* ==================== SECTION 11: RESPONSIVE DESIGN ==================== */
 
-/* Tablet and smaller */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
@@ -1353,25 +1310,25 @@ body {
         width: 100%;
     }
     
-    .order-header {
-        flex-direction: column;
-    }
-    
     .admin-item {
         flex-direction: column;
         align-items: flex-start;
     }
     
-    .users-list {
-        grid-template-columns: 1fr;
-    }
-    
     .form-row {
         flex-direction: column;
     }
+    
+    .users-table {
+        font-size: 0.875rem;
+    }
+    
+    .users-table th,
+    .users-table td {
+        padding: var(--spacing-sm);
+    }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
     .login-container {
         padding: var(--spacing-lg);
@@ -1415,10 +1372,7 @@ body {
     }
 }
 
-/* ==================== SCROLLBAR STYLING ====================
-   Custom scrollbar for webkit browsers.
-   ========================================================== */
-
+/* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
