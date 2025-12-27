@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickDeliver - نظام التوصيل السريع</title>
+    <title>QuickDeliver - Online Ordering System</title>
     <!-- Link to our CSS file for styling -->
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts for nice typography -->
@@ -12,73 +12,68 @@
 <body>
     <!-- ==================== LOGIN/SIGNUP PAGE ==================== -->
     <!-- This is the FIRST page users see. They must login or signup here -->
+    <!-- IMPORTANT: Signup creates CUSTOMER accounts only. Admin creates other roles. -->
     <section id="loginPage" class="login-page">
         <div class="login-container">
             <!-- Logo and welcome message -->
             <div class="login-header">
                 <span class="login-logo">🚀</span>
                 <h1>QuickDeliver</h1>
-                <p>نظام التوصيل السريع في مصر</p>
+                <p>Online Ordering System - Egypt</p>
             </div>
 
             <!-- Tab buttons to switch between Login and Signup -->
             <div class="auth-tabs">
-                <button class="auth-tab active" onclick="showAuthTab('login')">تسجيل الدخول</button>
-                <button class="auth-tab" onclick="showAuthTab('signup')">إنشاء حساب</button>
+                <button class="auth-tab active" onclick="showAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="showAuthTab('signup')">Sign Up</button>
             </div>
 
             <!-- LOGIN FORM -->
+            <!-- User enters email + password, system checks role and redirects -->
             <form id="loginForm" class="auth-form" onsubmit="handleLogin(event)">
-                <h2>تسجيل الدخول</h2>
+                <h2>Login to Your Account</h2>
                 
                 <div class="form-group">
-                    <label for="loginEmail">البريد الإلكتروني:</label>
+                    <label for="loginEmail">Email:</label>
                     <input type="email" id="loginEmail" required placeholder="example@email.com">
                 </div>
                 
                 <div class="form-group">
-                    <label for="loginPassword">كلمة المرور:</label>
-                    <input type="password" id="loginPassword" required placeholder="أدخل كلمة المرور">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
                 </div>
                 
-                <button type="submit" class="btn btn-primary btn-block">دخول</button>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
                 
-                <p class="auth-hint">ليس لديك حساب؟ <a href="#" onclick="showAuthTab('signup')">إنشاء حساب جديد</a></p>
+                <p class="auth-hint">Don't have an account? <a href="#" onclick="showAuthTab('signup')">Sign Up</a></p>
             </form>
 
             <!-- SIGNUP FORM -->
+            <!-- IMPORTANT: No role selection! All signups become CUSTOMERS automatically -->
             <form id="signupForm" class="auth-form hidden" onsubmit="handleSignup(event)">
-                <h2>إنشاء حساب جديد</h2>
+                <h2>Create New Account</h2>
+                <p class="signup-note">📝 New accounts are registered as Customers</p>
                 
                 <div class="form-group">
-                    <label for="signupName">الاسم الكامل:</label>
-                    <input type="text" id="signupName" required placeholder="مثال: أحمد حسن">
+                    <label for="signupName">Full Name:</label>
+                    <input type="text" id="signupName" required placeholder="e.g. Ahmed Hassan">
                 </div>
                 
                 <div class="form-group">
-                    <label for="signupEmail">البريد الإلكتروني:</label>
+                    <label for="signupEmail">Email:</label>
                     <input type="email" id="signupEmail" required placeholder="example@email.com">
                 </div>
                 
                 <div class="form-group">
-                    <label for="signupPassword">كلمة المرور:</label>
-                    <input type="password" id="signupPassword" required placeholder="أدخل كلمة المرور">
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" required placeholder="Choose a password">
                 </div>
                 
-                <div class="form-group">
-                    <label for="signupRole">اختر نوع الحساب:</label>
-                    <select id="signupRole" required>
-                        <option value="">-- اختر --</option>
-                        <option value="customer">عميل (Customer)</option>
-                        <option value="admin">مدير (Admin)</option>
-                        <option value="serviceOfferor">مقدم خدمة (Service Offeror)</option>
-                        <option value="courier">مندوب توصيل (Courier)</option>
-                    </select>
-                </div>
+                <!-- NO ROLE SELECTION - All signups are customers -->
                 
-                <button type="submit" class="btn btn-primary btn-block">إنشاء الحساب</button>
+                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                 
-                <p class="auth-hint">لديك حساب بالفعل؟ <a href="#" onclick="showAuthTab('login')">تسجيل الدخول</a></p>
+                <p class="auth-hint">Already have an account? <a href="#" onclick="showAuthTab('login')">Login</a></p>
             </form>
         </div>
     </section>
@@ -97,9 +92,9 @@
                 
                 <!-- User info and logout -->
                 <div class="user-info">
-                    <span id="welcomeUser">مرحباً، أحمد</span>
-                    <span id="userRoleBadge" class="role-badge">عميل</span>
-                    <button onclick="logout()" class="btn btn-secondary btn-sm">تسجيل خروج</button>
+                    <span id="welcomeUser">Welcome, Ahmed</span>
+                    <span id="userRoleBadge" class="role-badge">Customer</span>
+                    <button onclick="logout()" class="btn btn-secondary btn-sm">Logout</button>
                 </div>
             </div>
         </header>
@@ -108,20 +103,21 @@
         <main class="main-content">
             
             <!-- ========== CUSTOMER SECTION ========== -->
+            <!-- Customers can view approved products, add to cart, checkout -->
             <section id="customerSection" class="role-section hidden">
-                <h2 class="section-title">🛒 تسوق المنتجات</h2>
+                <h2 class="section-title">🛒 Shop Products</h2>
                 
                 <!-- Products by Category -->
                 <div class="products-container">
-                    <h3>المنتجات المتاحة</h3>
+                    <h3>Available Products</h3>
                     
                     <!-- Category Filter Buttons -->
                     <div class="category-filter">
-                        <button class="category-btn active" onclick="filterByCategory('all')">الكل</button>
-                        <button class="category-btn" onclick="filterByCategory('Pizza')">🍕 بيتزا</button>
-                        <button class="category-btn" onclick="filterByCategory('Burgers')">🍔 برجر</button>
-                        <button class="category-btn" onclick="filterByCategory('Drinks')">🥤 مشروبات</button>
-                        <button class="category-btn" onclick="filterByCategory('Desserts')">🍰 حلويات</button>
+                        <button class="category-btn active" onclick="filterByCategory('all')">All</button>
+                        <button class="category-btn" onclick="filterByCategory('Pizza')">🍕 Pizza</button>
+                        <button class="category-btn" onclick="filterByCategory('Burgers')">🍔 Burgers</button>
+                        <button class="category-btn" onclick="filterByCategory('Drinks')">🥤 Drinks</button>
+                        <button class="category-btn" onclick="filterByCategory('Desserts')">🍰 Desserts</button>
                     </div>
                     
                     <div id="productsList" class="products-grid">
@@ -131,68 +127,69 @@
 
                 <!-- Shopping Cart -->
                 <div class="cart-container">
-                    <h3>🛍️ سلة التسوق</h3>
+                    <h3>🛍️ Your Cart</h3>
                     <div id="cartItems" class="cart-items">
-                        <p class="empty-cart">السلة فارغة</p>
+                        <p class="empty-cart">Your cart is empty</p>
                     </div>
                     <div class="cart-footer">
                         <div class="cart-total">
-                            <span>الإجمالي:</span>
+                            <span>Total:</span>
                             <span id="cartTotal">0 EGP</span>
                         </div>
-                        <button onclick="showCheckout()" class="btn btn-primary">إتمام الطلب</button>
+                        <button onclick="showCheckout()" class="btn btn-primary">Checkout</button>
                     </div>
                 </div>
 
                 <!-- Customer Orders -->
                 <div class="orders-container">
-                    <h3>📦 طلباتي</h3>
+                    <h3>📦 My Orders</h3>
                     <div id="customerOrders" class="orders-list">
-                        <p class="no-orders">لا توجد طلبات</p>
+                        <p class="no-orders">No orders yet</p>
                     </div>
                 </div>
             </section>
 
             <!-- ========== CHECKOUT MODAL ========== -->
+            <!-- Payment simulation: Pay on Delivery or Credit Card -->
             <div id="checkoutModal" class="modal hidden">
                 <div class="modal-content">
                     <span class="modal-close" onclick="closeCheckout()">&times;</span>
-                    <h2>💳 إتمام الدفع</h2>
+                    <h2>💳 Checkout</h2>
                     
                     <!-- Order Summary -->
                     <div class="checkout-summary">
-                        <h4>ملخص الطلب</h4>
+                        <h4>Order Summary</h4>
                         <div id="checkoutItems"></div>
                         <div class="checkout-total">
-                            <strong>الإجمالي: <span id="checkoutTotal">0 EGP</span></strong>
+                            <strong>Total: <span id="checkoutTotal">0 EGP</span></strong>
                         </div>
                     </div>
                     
                     <!-- Payment Method Selection -->
                     <div class="payment-methods">
-                        <h4>اختر طريقة الدفع:</h4>
+                        <h4>Choose Payment Method:</h4>
                         <div class="payment-options">
                             <label class="payment-option">
                                 <input type="radio" name="paymentMethod" value="cash" checked onchange="togglePaymentForm()">
-                                <span class="payment-label">🚚 الدفع عند الاستلام</span>
+                                <span class="payment-label">🚚 Pay on Delivery</span>
                             </label>
                             <label class="payment-option">
                                 <input type="radio" name="paymentMethod" value="card" onchange="togglePaymentForm()">
-                                <span class="payment-label">💳 بطاقة ائتمان</span>
+                                <span class="payment-label">💳 Credit Card</span>
                             </label>
                         </div>
                     </div>
                     
-                    <!-- Credit Card Form (Hidden by default) -->
+                    <!-- Credit Card Form (Hidden by default) - Simple fake form -->
                     <div id="creditCardForm" class="credit-card-form hidden">
-                        <h4>بيانات البطاقة</h4>
+                        <h4>Card Details</h4>
                         <div class="form-group">
-                            <label>رقم البطاقة:</label>
+                            <label>Card Number:</label>
                             <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>تاريخ الانتهاء:</label>
+                                <label>Expiry Date:</label>
                                 <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
                             </div>
                             <div class="form-group">
@@ -202,7 +199,7 @@
                         </div>
                     </div>
                     
-                    <button onclick="processPayment()" class="btn btn-primary btn-block">تأكيد الطلب</button>
+                    <button onclick="processPayment()" class="btn btn-primary btn-block">Confirm Order</button>
                 </div>
             </div>
 
@@ -210,50 +207,84 @@
             <div id="paymentSuccessModal" class="modal hidden">
                 <div class="modal-content success-modal">
                     <div id="paymentSuccessIcon" class="success-icon">✅</div>
-                    <h2 id="paymentSuccessTitle">تم الدفع بنجاح!</h2>
-                    <p id="paymentSuccessMessage">شكراً لك! سيتم توصيل طلبك قريباً.</p>
-                    <button onclick="closePaymentSuccess()" class="btn btn-primary">حسناً</button>
+                    <h2 id="paymentSuccessTitle">Payment Successful!</h2>
+                    <p id="paymentSuccessMessage">Thank you! Your order will be delivered soon.</p>
+                    <button onclick="closePaymentSuccess()" class="btn btn-primary">OK</button>
                 </div>
             </div>
 
             <!-- ========== ADMIN SECTION ========== -->
+            <!-- Admin has FULL CONTROL: manage products, approve products, create/edit user accounts -->
             <section id="adminSection" class="role-section hidden">
-                <h2 class="section-title">⚙️ لوحة التحكم</h2>
+                <h2 class="section-title">⚙️ Admin Dashboard</h2>
                 
                 <div class="admin-panel">
-                    <!-- Product Management Form -->
+                    
+                    <!-- ===== CREATE NEW ACCOUNT (Admin Only) ===== -->
+                    <!-- Admin can create accounts for: Admin, Courier, Service Offeror -->
                     <div class="form-container">
-                        <h3>إدارة المنتجات</h3>
-                        <form id="productForm" onsubmit="addProduct(event)">
+                        <h3>👤 Create New Account</h3>
+                        <p class="form-note">Create accounts for Admin, Courier, or Service Offeror</p>
+                        <form id="createAccountForm" onsubmit="createAccount(event)">
                             <div class="form-group">
-                                <label for="productName">اسم المنتج:</label>
-                                <input type="text" id="productName" required placeholder="مثال: بيتزا مارجريتا">
+                                <label for="newUserName">Full Name (Egyptian):</label>
+                                <input type="text" id="newUserName" required placeholder="e.g. Mohamed Ali">
                             </div>
                             <div class="form-group">
-                                <label for="productPrice">السعر (EGP):</label>
+                                <label for="newUserEmail">Email:</label>
+                                <input type="email" id="newUserEmail" required placeholder="example@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserPassword">Password:</label>
+                                <input type="password" id="newUserPassword" required placeholder="Choose password">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserRole">Role:</label>
+                                <select id="newUserRole" required>
+                                    <option value="">-- Select Role --</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="serviceOfferor">Service Offeror</option>
+                                    <option value="courier">Courier</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                    </div>
+
+                    <!-- Product Management Form -->
+                    <div class="form-container">
+                        <h3>📦 Manage Products</h3>
+                        <form id="productForm" onsubmit="addProduct(event)">
+                            <div class="form-group">
+                                <label for="productName">Product Name:</label>
+                                <input type="text" id="productName" required placeholder="e.g. Margherita Pizza">
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Price (EGP):</label>
                                 <input type="number" id="productPrice" required min="0" step="0.01" placeholder="0.00">
                             </div>
                             <div class="form-group">
-                                <label for="productCategory">التصنيف:</label>
+                                <label for="productCategory">Category:</label>
                                 <select id="productCategory" required>
-                                    <option value="">اختر التصنيف</option>
-                                    <option value="Pizza">🍕 بيتزا</option>
-                                    <option value="Burgers">🍔 برجر</option>
-                                    <option value="Drinks">🥤 مشروبات</option>
-                                    <option value="Desserts">🍰 حلويات</option>
-                                    <option value="Other">📦 أخرى</option>
+                                    <option value="">Select category</option>
+                                    <option value="Pizza">🍕 Pizza</option>
+                                    <option value="Burgers">🍔 Burgers</option>
+                                    <option value="Drinks">🥤 Drinks</option>
+                                    <option value="Desserts">🍰 Desserts</option>
+                                    <option value="Other">📦 Other</option>
                                 </select>
                             </div>
                             <div class="form-buttons">
-                                <button type="submit" class="btn btn-primary">إضافة منتج</button>
-                                <button type="button" onclick="updateProduct()" class="btn btn-secondary">تحديث المحدد</button>
+                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <button type="button" onclick="updateProduct()" class="btn btn-secondary">Update Selected</button>
                             </div>
                         </form>
                     </div>
 
                     <!-- Pending Products (Need Approval) -->
                     <div class="pending-products-container">
-                        <h3>⏳ منتجات تنتظر الموافقة</h3>
+                        <h3>⏳ Products Pending Approval</h3>
+                        <p class="form-note">Products added by Service Offerors need your approval</p>
                         <div id="pendingProductsList" class="admin-list">
                             <!-- Pending products will appear here -->
                         </div>
@@ -261,61 +292,64 @@
 
                     <!-- All Products -->
                     <div class="admin-products">
-                        <h3>📦 جميع المنتجات</h3>
+                        <h3>📦 All Products</h3>
                         <div id="adminProductsList" class="admin-list">
                             <!-- Admin product list will appear here -->
                         </div>
                     </div>
 
-                    <!-- All Users (Admin Only) -->
+                    <!-- ===== USER ACCOUNTS SECTION (Admin Only) ===== -->
+                    <!-- Shows all users with Edit button -->
                     <div class="users-list-container" id="usersListContainer">
-                        <h3>👥 حسابات المستخدمين</h3>
-                        <div id="usersList" class="users-list">
-                            <!-- Users will be listed here -->
+                        <h3>👥 User Accounts</h3>
+                        <p class="form-note">View and edit all user accounts</p>
+                        <div id="usersTable" class="users-table">
+                            <!-- Users table will be displayed here -->
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- ========== SERVICE OFFEROR SECTION ========== -->
+            <!-- Service Offeror adds products (status = pending until admin approves) -->
             <section id="serviceOfferorSection" class="role-section hidden">
-                <h2 class="section-title">🏪 لوحة مقدم الخدمة</h2>
+                <h2 class="section-title">🏪 Service Offeror Dashboard</h2>
                 
                 <div class="service-panel">
                     <!-- Form to add/manage products -->
                     <div class="form-container">
-                        <h3>إضافة منتج جديد</h3>
+                        <h3>Add New Product</h3>
                         <form id="serviceProductForm" onsubmit="addServiceProduct(event)">
                             <div class="form-group">
-                                <label for="serviceProductName">اسم المنتج:</label>
-                                <input type="text" id="serviceProductName" required placeholder="مثال: برجر لحم">
+                                <label for="serviceProductName">Product Name:</label>
+                                <input type="text" id="serviceProductName" required placeholder="e.g. Beef Burger">
                             </div>
                             <div class="form-group">
-                                <label for="serviceProductPrice">السعر (EGP):</label>
+                                <label for="serviceProductPrice">Price (EGP):</label>
                                 <input type="number" id="serviceProductPrice" required min="0" step="0.01" placeholder="0.00">
                             </div>
                             <div class="form-group">
-                                <label for="serviceProductCategory">التصنيف:</label>
+                                <label for="serviceProductCategory">Category:</label>
                                 <select id="serviceProductCategory" required>
-                                    <option value="">اختر التصنيف</option>
-                                    <option value="Pizza">🍕 بيتزا</option>
-                                    <option value="Burgers">🍔 برجر</option>
-                                    <option value="Drinks">🥤 مشروبات</option>
-                                    <option value="Desserts">🍰 حلويات</option>
-                                    <option value="Other">📦 أخرى</option>
+                                    <option value="">Select category</option>
+                                    <option value="Pizza">🍕 Pizza</option>
+                                    <option value="Burgers">🍔 Burgers</option>
+                                    <option value="Drinks">🥤 Drinks</option>
+                                    <option value="Desserts">🍰 Desserts</option>
+                                    <option value="Other">📦 Other</option>
                                 </select>
                             </div>
                             <div class="form-buttons">
-                                <button type="submit" class="btn btn-primary">إضافة منتج</button>
-                                <button type="button" onclick="updateServiceProduct()" class="btn btn-secondary">تحديث المحدد</button>
+                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                <button type="button" onclick="updateServiceProduct()" class="btn btn-secondary">Update Selected</button>
                             </div>
                         </form>
-                        <p class="form-note">⚠️ ملاحظة: المنتجات الجديدة تحتاج موافقة المدير قبل ظهورها للعملاء</p>
+                        <p class="form-note">⚠️ Note: New products need Admin approval before customers can see them</p>
                     </div>
 
                     <!-- Products owned by this service offeror -->
                     <div class="service-products">
-                        <h3>منتجاتي</h3>
+                        <h3>My Products</h3>
                         <div id="serviceProductsList" class="admin-list">
                             <!-- Service offeror's products will appear here -->
                         </div>
@@ -324,26 +358,27 @@
             </section>
 
             <!-- ========== COURIER SECTION ========== -->
+            <!-- Courier: View orders, update status, update delivery area -->
             <section id="courierSection" class="role-section hidden">
-                <h2 class="section-title">🚚 لوحة مندوب التوصيل</h2>
+                <h2 class="section-title">🚚 Courier Dashboard</h2>
                 
                 <div class="courier-panel">
                     <!-- Courier's delivery area settings -->
                     <div class="courier-settings">
-                        <h3>إعدادات التوصيل</h3>
+                        <h3>Delivery Settings</h3>
                         <div class="form-group">
-                            <label for="deliveryArea">منطقة التوصيل:</label>
-                            <input type="text" id="deliveryArea" placeholder="مثال: المعادي، مصر الجديدة">
-                            <button onclick="updateDeliveryArea()" class="btn btn-secondary">تحديث المنطقة</button>
+                            <label for="deliveryArea">Delivery Area:</label>
+                            <input type="text" id="deliveryArea" placeholder="e.g. Maadi, Heliopolis">
+                            <button onclick="updateDeliveryArea()" class="btn btn-secondary">Update Area</button>
                         </div>
-                        <p class="current-area">المنطقة الحالية: <span id="currentArea">وسط البلد</span></p>
+                        <p class="current-area">Current Area: <span id="currentArea">Downtown Cairo</span></p>
                     </div>
 
                     <!-- Orders assigned to this courier -->
                     <div class="assigned-orders">
-                        <h3>📋 الطلبات المسندة إليّ</h3>
+                        <h3>📋 Assigned Orders</h3>
                         <div id="courierOrders" class="orders-list">
-                            <p class="no-orders">لا توجد طلبات مسندة</p>
+                            <p class="no-orders">No assigned orders</p>
                         </div>
                     </div>
                 </div>
@@ -353,19 +388,20 @@
         <!-- ==================== FOOTER ==================== -->
         <footer class="footer">
             <div class="footer-content">
-                <p>QuickDeliver © 2025 - نظام التوصيل السريع في مصر</p>
-                <!-- Admin link to user accounts -->
-                <a href="#" id="userAccountsLink" class="footer-link hidden" onclick="scrollToUsers()">👥 حسابات المستخدمين</a>
+                <p>QuickDeliver © 2025 - Online Ordering System - Egypt</p>
+                <!-- Admin link to user accounts - Only visible for admin -->
+                <a href="#" id="userAccountsLink" class="footer-link hidden" onclick="scrollToUsers()">👥 User Accounts</a>
             </div>
         </footer>
     </div>
 
     <!-- ==================== NOTIFICATION TOAST ==================== -->
     <div id="toast" class="toast hidden">
-        <span id="toastMessage">رسالة</span>
+        <span id="toastMessage">Message</span>
     </div>
 
     <!-- Link to our JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>
+
